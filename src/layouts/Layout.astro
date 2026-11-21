@@ -17,6 +17,8 @@ interface Props {
 }
 
 const { title, description = sitio.descripcion } = Astro.props;
+const urlPagina = new URL(Astro.url.pathname, Astro.site).href;
+const imagenOG = new URL("/og.jpg", Astro.site).href;
 ---
 
 <!doctype html>
@@ -34,6 +36,16 @@ const { title, description = sitio.descripcion } = Astro.props;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content={sitio.nombre} />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- ETIQUETAS -->
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={sitio.nombre} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={urlPagina} />
+    <meta property="og:image" content={imagenOG} />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <title>{title}</title>
 
