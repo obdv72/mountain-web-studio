@@ -1,0 +1,23 @@
+---
+/*
+  Página Planes (ruta "/planes").
+*/
+import Layout from "../layouts/Layout.astro";
+import EncabezadoPagina from "../components/EncabezadoPagina.astro";
+import Oferta from "../components/planes/Oferta.astro";
+import Planes from "../components/planes/Planes.astro";
+import Preguntas from "../components/planes/Preguntas.astro";
+import LlamadoFinal from "../components/LlamadoFinal.astro";
+---
+
+<Layout title="Planes · Mountain Web Studio">
+  <EncabezadoPagina
+    rotulo="Mountain Web Studio"
+    titulo="Planes"
+    texto="Elige la ruta según hasta dónde quieres llegar."
+  />
+  <Oferta />
+  <Planes />
+  <Preguntas />
+  <LlamadoFinal />
+</Layout>

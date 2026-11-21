@@ -1,0 +1,19 @@
+---
+/*
+  Página Proyectos (ruta "/proyectos").
+*/
+import Layout from "../layouts/Layout.astro";
+import EncabezadoPagina from "../components/EncabezadoPagina.astro";
+import Casos from "../components/proyectos/Casos.astro";
+import LlamadoFinal from "../components/LlamadoFinal.astro";
+---
+
+<Layout title="Proyectos · Mountain Web Studio">
+  <EncabezadoPagina
+    rotulo="Mountain Web Studio"
+    titulo="Proyectos"
+    texto="Cada proyecto es una historia de reto, solución y resultado."
+  />
+  <Casos />
+  <LlamadoFinal />
+</Layout>

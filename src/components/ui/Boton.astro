@@ -1,0 +1,47 @@
+---
+/*
+  Botón reutilizable. Su estilo sale de los tokens (marca, radio, borde).
+  - Con `href` se dibuja como enlace <a> (para navegar).
+  - Sin `href` se dibuja como <button> (para acciones, por ejemplo un formulario).
+  - `externo`: abre en otra pestaña (WhatsApp, sitios de clientes).
+
+  Uso:
+    <Boton href={enlaceWhatsApp()} externo>Escríbenos por WhatsApp</Boton>
+    <Boton variante="secundario" href="/proyectos">Ver proyectos</Boton>
+*/
+
+interface Props {
+  href?: string;
+  variante?: "primario" | "secundario";
+  type?: "button" | "submit";
+  externo?: boolean;
+  class?: string;
+}
+
+const { href, variante = "primario", type = "button", externo = false, class: clase } = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-marca border px-5 py-3 text-sm font-medium shadow-marca transition-colors duration-200 motion-reduce:transition-none";
+
+const variantes = {
+  primario: "border-marca bg-marca text-marca-contraste hover:bg-fondo hover:text-marca",
+  secundario: "border-borde bg-transparent text-texto hover:border-marca",
+};
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class:list={[base, variantes[variante], clase]}
+      target={externo ? "_blank" : undefined}
+      rel={externo ? "noopener" : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={[base, variantes[variante], clase]}>
+      <slot />
+    </button>
+  )
+}

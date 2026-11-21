@@ -1,0 +1,52 @@
+---
+/*
+  Preguntas: lista con líneas de 1px y "+" a la derecha; al tocar una pregunta se abre la respuesta.
+  Usa <details>: funciona con teclado y sin JavaScript.
+*/
+import Contenedor from "../ui/Contenedor.astro";
+
+const preguntas = [
+  {
+    pregunta: "¿Emiten factura?",
+    respuesta: "Sí, emitimos factura electrónica por cada proyecto.",
+  },
+  {
+    pregunta: "¿Qué pasa después de publicar?",
+    respuesta:
+      "Te enseñamos a actualizar tu sitio y respondemos dudas durante el periodo de soporte de tu plan.",
+  },
+  {
+    pregunta: "¿El sitio será mío?",
+    respuesta: "Sí. El dominio y los archivos quedan a tu nombre desde el primer día.",
+  },
+  {
+    pregunta: "¿Cuánto tarda?",
+    respuesta: "Entre 2 y 6 semanas según el plan, desde que recibimos tu contenido.",
+  },
+  { pregunta: "¿Puedo pagar por partes?", respuesta: "Sí: 50 % al iniciar y 50 % al publicar." },
+];
+---
+
+<section id="preguntas" class="border-t border-borde py-24 md:py-32">
+  <Contenedor class="grid gap-10 lg:grid-cols-12 lg:gap-x-6">
+    <h2 class="text-[12vw] leading-[0.9] md:text-7xl lg:col-span-4" data-revelar>Preguntas</h2>
+    <div class="border-b border-borde lg:col-span-8" data-revelar>
+      {
+        preguntas.map((p, i) => (
+          <details class="group border-t border-borde" open={i === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg [&::-webkit-details-marker]:hidden">
+              {p.pregunta}
+              <span
+                aria-hidden="true"
+                class="text-2xl leading-none text-texto-suave transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
+              >
+                +
+              </span>
+            </summary>
+            <p class="max-w-2xl pb-6 text-texto-suave">{p.respuesta}</p>
+          </details>
+        ))
+      }
+    </div>
+  </Contenedor>
+</section>

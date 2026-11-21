@@ -1,0 +1,20 @@
+---
+/*
+  Página de inicio (ruta "/").
+  Una página solo importa el Layout y ordena las secciones.
+*/
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/inicio/Hero.astro";
+import Clientes from "../components/inicio/Clientes.astro";
+import Problema from "../components/inicio/Problema.astro";
+import ProyectosDestacados from "../components/inicio/ProyectosDestacados.astro";
+import LlamadoFinal from "../components/LlamadoFinal.astro";
+---
+
+<Layout title="Mountain Web Studio · Muestra tu trabajo al mundo">
+  <Hero />
+  <Clientes />
+  <Problema />
+  <ProyectosDestacados />
+  <LlamadoFinal />
+</Layout>

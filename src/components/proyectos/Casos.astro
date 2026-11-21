@@ -1,0 +1,112 @@
+---
+/*
+  Casos de estudio (referencia 2a): grid editorial asimétrico.
+  Computadora: imagen grande en las columnas 1 a 8 y ficha en las 9 a 12, línea de 1px entre casos.
+  Celular: imagen arriba, ficha abajo. Sin métricas ni testimonios.
+*/
+import Contenedor from "../ui/Contenedor.astro";
+import Marco from "../ui/Marco.astro";
+import sesiones from "@pack/imagenes/sesiones-al-parque.jpg";
+import tania from "@pack/imagenes/tania-cortes-becerra.jpg";
+import lab from "@pack/imagenes/mountain-studio-lab.jpg";
+import ana from "@pack/imagenes/ana-cristina-torres.jpg";
+
+const casos = [
+  {
+    titulo: "Sitio para Sesiones Al Parque",
+    cliente: "Sesiones Al Parque · Plataforma de música en espacios públicos · Quito",
+    imagen: sesiones,
+    alt: "La página de inicio del sitio de Sesiones Al Parque",
+    reto: "Reunir más de una década de sesiones y abrir canales para artistas, donantes y auspiciantes.",
+    solucion:
+      "Un sitio con el archivo de sesiones, la serie Bajo Tierra y secciones para aplicar, donar y auspiciar.",
+    resultado: "Un solo lugar para el archivo desde 2012 y las convocatorias.",
+    enlace: "https://sesionesalparque.com",
+  },
+  {
+    titulo: "Portafolio para Tania Cortés Becerra",
+    cliente: "Tania Cortés Becerra · Compositora y artista multimedia",
+    imagen: tania,
+    alt: "La página de biografía del sitio de Tania Cortés Becerra",
+    reto: "Presentar una obra experimental ante festivales y curadores internacionales.",
+    solucion: "Un portafolio en inglés con biografía, obras, noticias y contacto.",
+    resultado:
+      "Un sitio que acompaña una trayectoria con participación en la Biennale Musica de Venecia (2022 y 2023).",
+    enlace: "https://taniacortesbecerra.com",
+  },
+  {
+    titulo: "Sitio para Mountain Studio Lab",
+    cliente: "Mountain Studio Lab · Estudio de arte multimedia · Quito",
+    imagen: lab,
+    alt: "La lista de obras del sitio de Mountain Studio Lab",
+    reto: "Mostrar instalaciones, conciertos y performances en varios países sin perder claridad.",
+    solucion:
+      "Un archivo de obras ordenado por formato, año y ciudad, con un taller y una página del estudio.",
+    resultado: "Un portafolio con obras desde 2019 en Ecuador, Francia, España e Italia.",
+    enlace: "https://mountainstudiolab.com",
+  },
+  {
+    titulo: "Sitio académico para Ana Cristina Torres",
+    cliente: "Ana Cristina Torres · Docente e investigadora socio-ecológica",
+    imagen: ana,
+    alt: "La portada del sitio de Ana Cristina Torres con su presentación",
+    reto: "Comunicar una investigación que cruza antropología, ecología y métodos creativos, más allá de las revistas académicas.",
+    solucion: "Un sitio sobrio con una portada de presentación y una sección de trabajo.",
+    resultado:
+      "Una presencia académica propia para compartir su investigación sobre naturaleza urbana.",
+    enlace: "https://actorres.com",
+  },
+];
+---
+
+<section id="casos" class="pt-16 pb-8 md:pt-24">
+  <Contenedor>
+    <p class="rotulo">Casos de estudio</p>
+
+    <div class="mt-8">
+      {
+        casos.map((caso, i) => {
+          const numero = String(i + 1).padStart(2, "0");
+          const fila = [
+            { etiqueta: "Reto", texto: caso.reto },
+            { etiqueta: "Solución", texto: caso.solucion },
+            { etiqueta: "Resultado", texto: caso.resultado },
+          ];
+          return (
+            <article
+              id={`caso-${numero}`}
+              class="grid scroll-mt-24 gap-8 border-t border-borde py-12 md:py-16 lg:grid-cols-12 lg:gap-x-6"
+            >
+              <div class="lg:col-span-8" data-revelar>
+                <Marco src={caso.imagen} alt={caso.alt} rotulo={`Caso ${numero} · Archivo`} />
+              </div>
+              <div class="flex flex-col lg:col-span-4" data-revelar>
+                <p class="rotulo">{caso.cliente}</p>
+                <h2 class="mt-4 font-texto text-2xl font-medium normal-case md:text-3xl">
+                  {caso.titulo}
+                </h2>
+                <dl class="mt-8 border-b border-borde text-sm">
+                  {fila.map((f) => (
+                    <div class="grid grid-cols-[6.5rem_1fr] gap-4 border-t border-borde py-4">
+                      <dt class="rotulo">{f.etiqueta}</dt>
+                      <dd class="text-texto">{f.texto}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <a
+                  href={caso.enlace}
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-6 self-start text-sm underline decoration-1 underline-offset-[6px] hover:text-texto-suave"
+                >
+                  Ver sitio: {caso.enlace.replace("https://", "")}
+                  <span class="sr-only">(se abre en otra pestaña)</span>
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </Contenedor>
+</section>

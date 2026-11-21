@@ -1,0 +1,17 @@
+---
+/*
+  WhatsApp flotante (sección 7 del brief): solo en celular, un cuadrado en color marca
+  abajo a la derecha, en todas las páginas.
+*/
+import { enlaceWhatsApp } from "../datos/sitio";
+---
+
+<a
+  href={enlaceWhatsApp()}
+  target="_blank"
+  rel="noopener"
+  aria-label="Escríbenos por WhatsApp"
+  class="fixed right-4 bottom-4 z-40 flex size-14 items-center justify-center border border-marca bg-marca font-titulos text-lg text-marca-contraste md:hidden"
+>
+  WA
+</a>

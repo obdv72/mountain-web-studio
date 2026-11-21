@@ -1,0 +1,50 @@
+---
+/*
+  Hero de Inicio: lleva el único <h1> de la página. Hero tipográfico, sin imagen.
+  La palabra del medio rota sola (interacción 1, src/scripts/interacciones.ts) y va en letra de contorno.
+  Los lectores de pantalla leen "Muestra tu obra al mundo" (la palabra que cambia está oculta para ellos).
+*/
+import Boton from "../ui/Boton.astro";
+import Contenedor from "../ui/Contenedor.astro";
+import { enlaceWhatsApp } from "../../datos/sitio";
+
+const palabras = ["OBRA", "MÚSICA", "INVESTIGACIÓN", "ESTUDIO", "MARCA"];
+---
+
+<section id="hero" class="pt-14 pb-16 md:pt-24 md:pb-24">
+  <Contenedor>
+    <p class="rotulo" data-revelar>Estudio web · Quito</p>
+
+    <h1 class="mt-6 text-[13vw] leading-[0.88] lg:text-[10rem]" data-revelar>
+      <span class="block">Muestra tu</span>
+      <span class="sr-only">obra</span>
+      <span
+        class="block contorno"
+        aria-hidden="true"
+        data-palabra
+        data-palabras={palabras.join(",")}>{palabras[0]}</span
+      >
+      <span class="block">al mundo</span>
+    </h1>
+
+    <div class="mt-12 grid gap-8 md:mt-16 lg:grid-cols-12 lg:items-end lg:gap-x-6">
+      <p class="max-w-md text-lg text-texto-suave lg:col-span-5" data-revelar>
+        Sitios web a medida para artistas, estudios creativos, académicos y Pymes boutique.
+      </p>
+      <div
+        class="flex flex-col gap-4 sm:flex-row sm:items-center lg:col-span-6 lg:col-start-7 lg:justify-end"
+        data-revelar
+      >
+        <Boton href={enlaceWhatsApp()} externo class="w-full sm:w-auto"
+          >Escríbenos por WhatsApp</Boton
+        >
+        <a
+          href="/proyectos"
+          class="py-3 text-center text-sm underline decoration-1 underline-offset-[6px] hover:text-texto-suave sm:px-2"
+        >
+          Ver proyectos
+        </a>
+      </div>
+    </div>
+  </Contenedor>
+</section>

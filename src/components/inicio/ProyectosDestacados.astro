@@ -1,0 +1,88 @@
+---
+/*
+  Proyectos destacados (referencia 1a; interacción 2).
+  Computadora: 3 nombres gigantes centrados con líneas de 1px entre ellos; al pasar el mouse
+  (o al llegar con el teclado), las palabras se separan y aparece una imagen pequeña en medio.
+  Celular: la imagen se ve siempre, encima del nombre.
+*/
+import { Image } from "astro:assets";
+import Contenedor from "../ui/Contenedor.astro";
+import Marco from "../ui/Marco.astro";
+import sesiones from "@pack/imagenes/sesiones-al-parque.jpg";
+import tania from "@pack/imagenes/tania-cortes-becerra.jpg";
+import lab from "@pack/imagenes/mountain-studio-lab.jpg";
+
+const proyectos = [
+  {
+    nombre: ["Sesiones", "Al Parque"],
+    detalle: "Plataforma de música en espacios públicos · Quito",
+    imagen: sesiones,
+    alt: "Página de inicio del sitio de Sesiones Al Parque",
+    href: "/proyectos#caso-01",
+  },
+  {
+    nombre: ["Tania", "Cortés Becerra"],
+    detalle: "Compositora y artista multimedia",
+    imagen: tania,
+    alt: "Página de biografía del sitio de Tania Cortés Becerra",
+    href: "/proyectos#caso-02",
+  },
+  {
+    nombre: ["Mountain", "Studio Lab"],
+    detalle: "Estudio de arte multimedia · Quito",
+    imagen: lab,
+    alt: "Lista de obras del sitio de Mountain Studio Lab",
+    href: "/proyectos#caso-03",
+  },
+];
+---
+
+<section id="proyectos-destacados" class="border-t border-borde py-24 md:py-36">
+  <Contenedor>
+    <p class="rotulo">Proyectos destacados</p>
+
+    <ul class="mt-8 border-t border-borde" data-revelar-cascada>
+      {
+        proyectos.map((p, i) => (
+          <li class="border-b border-borde">
+            <a href={p.href} class="group block py-8 text-center md:py-6">
+              <Marco
+                src={p.imagen}
+                alt={p.alt}
+                rotulo={`Caso 0${i + 1}`}
+                sizes="100vw"
+                class="mb-6 md:hidden"
+              />
+              <h3 class="font-titulos text-[11vw] leading-[0.95] uppercase md:text-[7vw] lg:text-[6rem]">
+                <span>{p.nombre[0]}</span>{" "}
+                <span
+                  aria-hidden="true"
+                  class="hidden h-[0.8em] w-0 overflow-hidden align-[-0.05em] transition-all duration-500 ease-out group-hover:mx-[0.2em] group-hover:w-[1.3em] group-focus-visible:mx-[0.2em] group-focus-visible:w-[1.3em] motion-reduce:transition-none md:inline-block"
+                >
+                  <Image
+                    src={p.imagen}
+                    alt=""
+                    widths={[240, 480]}
+                    sizes="240px"
+                    class="h-full w-full object-cover"
+                  />
+                </span>
+                <span>{p.nombre[1]}</span>
+              </h3>
+              <p class="mt-2 text-sm text-texto-suave">{p.detalle}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-8 flex justify-end">
+      <a
+        href="/proyectos"
+        class="text-sm underline decoration-1 underline-offset-[6px] hover:text-texto-suave"
+      >
+        Ver todos los proyectos <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </Contenedor>
+</section>

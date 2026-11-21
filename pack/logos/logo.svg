@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 44" width="64" height="44" fill="none" stroke="#e6e0d2" stroke-width="1.6" stroke-linejoin="miter" stroke-linecap="square" role="img" aria-labelledby="t">
+  <title id="t">Mountain Web Studio</title>
+  <polygon points="8,38 28,10 42,26 47,21 56,38"/>
+  <polyline points="28,10 33,38"/>
+  <polyline points="42,26 39,38"/>
+  <polyline points="1,7 1,1 7,1"/>
+  <polyline points="57,1 63,1 63,7"/>
+  <polyline points="1,37 1,43 7,43"/>
+  <polyline points="57,43 63,43 63,37"/>
+</svg>

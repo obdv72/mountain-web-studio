@@ -1,0 +1,27 @@
+---
+/*
+  Encabezado de página (Proyectos, Estudio y Planes): rótulo, título gigante con el <h1> y texto.
+  Computadora: título a la izquierda y texto a la derecha. Celular: apilado.
+*/
+import Contenedor from "./ui/Contenedor.astro";
+
+interface Props {
+  rotulo: string;
+  titulo: string;
+  texto: string;
+}
+
+const { rotulo, titulo, texto } = Astro.props;
+---
+
+<section id="encabezado" class="border-b border-borde pt-16 pb-12 md:pt-24 md:pb-16">
+  <Contenedor class="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-x-6">
+    <div class="lg:col-span-8">
+      <p class="rotulo" data-revelar>{rotulo}</p>
+      <h1 class="mt-4 text-[18vw] leading-[0.85] sm:text-[15vw] lg:text-[10rem]" data-revelar>
+        {titulo}
+      </h1>
+    </div>
+    <p class="max-w-sm text-lg text-texto-suave lg:col-span-4 lg:pb-4" data-revelar>{texto}</p>
+  </Contenedor>
+</section>

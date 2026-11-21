@@ -1,0 +1,21 @@
+---
+/*
+  Llamado final: se repite al cierre de cada página (sección 9 del brief, "Común a todas las páginas").
+*/
+import Boton from "./ui/Boton.astro";
+import Contenedor from "./ui/Contenedor.astro";
+import { enlaceWhatsApp } from "../datos/sitio";
+---
+
+<section id="llamado-final" class="border-t border-borde py-24 md:py-36">
+  <Contenedor class="flex flex-col items-center text-center">
+    <h2 class="text-[12vw] leading-[0.9] md:text-8xl lg:text-9xl" data-revelar>
+      Hablemos de <br />tu proyecto
+    </h2>
+    <p class="mt-6 text-lg text-texto-suave" data-revelar>Tomamos dos proyectos nuevos por mes.</p>
+    <div class="mt-10 w-full sm:w-auto" data-revelar>
+      <Boton href={enlaceWhatsApp()} externo class="w-full sm:w-auto">Escríbenos por WhatsApp</Boton
+      >
+    </div>
+  </Contenedor>
+</section>

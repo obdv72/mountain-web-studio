@@ -1,0 +1,19 @@
+---
+/*
+  Contenedor: centra el contenido y le da el ancho máximo del sitio.
+  El ancho máximo sale de la sección 5 del brief (ancho): se cambia SOLO aquí.
+
+  Uso:
+    <Contenedor>...contenido...</Contenedor>
+*/
+
+interface Props {
+  class?: string;
+}
+
+const { class: clase } = Astro.props;
+---
+
+<div class:list={["mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", clase]}>
+  <slot />
+</div>

@@ -1,0 +1,22 @@
+---
+/*
+  Grilla del botón HUD (sección 6 del brief, interacción 3): las columnas de la grilla
+  en líneas finas sobre todo el sitio. 12 en computadora, 4 en celular.
+  Solo se ve con HUD: ON (ver global.css y src/scripts/interacciones.ts).
+*/
+import Contenedor from "./ui/Contenedor.astro";
+
+const columnas = Array.from({ length: 12 }, (_, i) => i);
+---
+
+<div data-hud-grilla aria-hidden="true" class="pointer-events-none fixed inset-0 z-50">
+  <Contenedor class="grid h-full grid-cols-4 gap-x-4 sm:gap-x-6 lg:grid-cols-12">
+    {
+      columnas.map((i) => (
+        <span
+          class:list={["h-full border-x border-marca/25 bg-marca/5", i >= 4 && "hidden lg:block"]}
+        />
+      ))
+    }
+  </Contenedor>
+</div>

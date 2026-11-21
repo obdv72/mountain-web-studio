@@ -1,0 +1,30 @@
+---
+/*
+  Oferta: título y 3 beneficios en columnas con línea encima. En celular, apilados.
+*/
+import Contenedor from "../ui/Contenedor.astro";
+
+const beneficios = [
+  { titulo: "Autoridad", texto: "Te toman en serio desde el primer clic." },
+  { titulo: "Alcance", texto: "Clientes y curadores de otros países te encuentran." },
+  { titulo: "Respaldo", texto: "Tu sitio sostiene postulaciones a fondos, becas y residencias." },
+];
+---
+
+<section id="oferta" class="py-24 md:py-32">
+  <Contenedor>
+    <h2 class="text-[12vw] leading-[0.9] md:text-7xl lg:text-8xl" data-revelar>
+      Una inversión, no un gasto
+    </h2>
+    <ul class="mt-12 grid gap-8 md:grid-cols-3 md:gap-6" data-revelar-cascada>
+      {
+        beneficios.map((b) => (
+          <li class="border-t border-borde pt-5">
+            <h3 class="text-lg font-medium">{b.titulo}</h3>
+            <p class="mt-2 text-texto-suave">{b.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Contenedor>
+</section>

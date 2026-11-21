@@ -1,0 +1,87 @@
+---
+/*
+  Encabezado del sitio (sección 7 del brief; referencia 2b).
+  Computadora: logo y nombre a la izquierda · menú en línea separado por comas
+  (la página actual subrayada) · botón "Hablemos" a la derecha, que aparece al salir del Hero.
+  Celular: logo y nombre + botón "Menú", que abre la lista a pantalla completa.
+  El menú de celular usa <details>: funciona con teclado y sin JavaScript.
+*/
+import { Image } from "astro:assets";
+import Contenedor from "./ui/Contenedor.astro";
+import Boton from "./ui/Boton.astro";
+import logo from "@pack/logos/logo.svg";
+import { encabezado, enlaceWhatsApp, menu, sitio } from "../datos/sitio";
+
+const actual = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+const enlace = "underline-offset-[6px] decoration-1 hover:underline aria-[current=page]:underline";
+---
+
+<header
+  class:list={["z-40 border-b border-borde bg-fondo", encabezado.fijo && "sticky top-0"]}
+  data-encabezado
+>
+  <Contenedor class="flex h-16 items-center justify-between gap-6 md:h-20">
+    <a href="/" class="flex shrink-0 items-center gap-3">
+      <Image src={logo} alt="" class="h-6 w-auto md:h-7" loading="eager" />
+      <span class="font-titulos text-base tracking-wide uppercase md:text-lg">{sitio.nombre}</span>
+    </a>
+
+    <div class="hidden items-center gap-8 lg:flex">
+      <nav aria-label="Principal">
+        <ul class="flex text-sm">
+          {
+            menu.map((item, i) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={item.href === actual ? "page" : undefined}
+                  class={enlace}
+                >
+                  {item.texto}
+                </a>
+                {i < menu.length - 1 && <span class="mr-1.5 text-texto-suave">,</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div data-hablemos class="transition-opacity duration-300 motion-reduce:transition-none">
+        <Boton href={enlaceWhatsApp()} externo class="px-4 py-2">Hablemos</Boton>
+      </div>
+    </div>
+
+    <details class="group lg:hidden" data-menu-celular>
+      <summary
+        class="flex cursor-pointer list-none items-center px-1 py-2 rotulo text-texto [&::-webkit-details-marker]:hidden"
+      >
+        <span class="group-open:hidden">Menú</span>
+        <span class="hidden group-open:inline">Cerrar</span>
+      </summary>
+      <nav
+        aria-label="Principal"
+        class="fixed inset-x-0 top-16 bottom-0 z-50 flex flex-col justify-between overflow-y-auto border-t border-borde bg-fondo px-4 py-10 sm:px-6 md:top-20"
+      >
+        <ul class="flex flex-col">
+          {
+            menu.map((item, i) => (
+              <li class="border-b border-borde">
+                <a
+                  href={item.href}
+                  aria-current={item.href === actual ? "page" : undefined}
+                  class="flex items-baseline justify-between py-4 font-titulos text-5xl uppercase aria-[current=page]:text-texto-suave"
+                >
+                  {item.texto}
+                  <span class="rotulo">{String(i + 1).padStart(2, "0")}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-10">
+          <Boton href={enlaceWhatsApp()} externo class="w-full">Hablemos</Boton>
+        </div>
+      </nav>
+    </details>
+  </Contenedor>
+</header>

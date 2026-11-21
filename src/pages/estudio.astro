@@ -1,0 +1,21 @@
+---
+/*
+  Página Estudio (ruta "/estudio").
+*/
+import Layout from "../layouts/Layout.astro";
+import EncabezadoPagina from "../components/EncabezadoPagina.astro";
+import Equipo from "../components/estudio/Equipo.astro";
+import Proceso from "../components/estudio/Proceso.astro";
+import LlamadoFinal from "../components/LlamadoFinal.astro";
+---
+
+<Layout title="Estudio · Mountain Web Studio">
+  <EncabezadoPagina
+    rotulo="Mountain Web Studio"
+    titulo="Estudio"
+    texto="Un estudio pequeño en Quito, para trabajo que merece verse bien."
+  />
+  <Equipo />
+  <Proceso />
+  <LlamadoFinal />
+</Layout>

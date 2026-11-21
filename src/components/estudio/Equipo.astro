@@ -1,0 +1,59 @@
+---
+/*
+  Equipo: título y texto; dos columnas, una por integrante (foto, código, rol y texto).
+  En celular, los integrantes van apilados.
+*/
+import Contenedor from "../ui/Contenedor.astro";
+import Marco from "../ui/Marco.astro";
+import ds from "@pack/imagenes/equipo-ds285a001.jpg";
+import dv from "@pack/imagenes/equipo-dv285b002.jpg";
+
+const integrantes = [
+  {
+    codigo: "DS285A001",
+    rol: "Diseño y dirección de arte",
+    texto: "Defiende cada espacio en blanco como si fuera suyo. Nunca ha usado un degradado.",
+    imagen: ds,
+    alt: "Silueta de una persona a contraluz, sin rostro visible, en blanco y negro con grano",
+    rotulo: "Operador 01",
+  },
+  {
+    codigo: "DV285B002",
+    rol: "Desarrollo y código",
+    texto:
+      "Hace que todo cargue rápido y funcione en cualquier pantalla. Revisa el contraste por diversión.",
+    imagen: dv,
+    alt: "Silueta de una persona de perfil en sombra, sin rostro visible, en blanco y negro con grano",
+    rotulo: "Operador 02",
+  },
+];
+---
+
+<section id="equipo" class="py-24 md:py-36">
+  <Contenedor>
+    <h2 class="text-[12vw] leading-[0.9] md:text-7xl lg:text-8xl" data-revelar>
+      Quién sube contigo
+    </h2>
+    <p class="mt-4 max-w-xl text-lg text-texto-suave" data-revelar>
+      Un equipo pequeño. Dos integrantes, cero plantillas genéricas.
+    </p>
+
+    <ul class="mt-12 grid gap-12 md:grid-cols-2 md:gap-6" data-revelar-cascada>
+      {
+        integrantes.map((p) => (
+          <li>
+            <Marco
+              src={p.imagen}
+              alt={p.alt}
+              rotulo={p.rotulo}
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+            <h3 class="mt-6 font-titulos text-4xl">{p.codigo}</h3>
+            <p class="mt-1 rotulo">{p.rol}</p>
+            <p class="mt-4 max-w-md">{p.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Contenedor>
+</section>
